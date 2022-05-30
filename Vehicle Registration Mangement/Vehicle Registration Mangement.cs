@@ -66,12 +66,23 @@ namespace Vehicle_Registration_Mangement
 
         private void Edit_Click(object sender, EventArgs e)
         {
-            
+            int index = listBox1.SelectedIndex;
+            listBox1.Items.RemoveAt(index);
+            listBox1.Items.Insert(index, InputBox.Text);
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try
+            {
+                InputBox.Text = listBox1.SelectedItem.ToString();
+            }
+            catch
+            {
+
+            }
             label2.Text = listBox1.Text;
+            InputBox.Text = listBox1.SelectedIndex.ToString();
         }
 
         private void Delete_Click(object sender, EventArgs e)
