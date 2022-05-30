@@ -17,7 +17,8 @@ namespace Vehicle_Registration_Mangement
         {
             InitializeComponent();
         }
-        List<String> myArray = new List<string>();
+        List<String[]> myArray = new List<string[]>();
+        string[] myArray2 = new string[20];
 
         private void Open_Click(object sender, EventArgs e)
         {
