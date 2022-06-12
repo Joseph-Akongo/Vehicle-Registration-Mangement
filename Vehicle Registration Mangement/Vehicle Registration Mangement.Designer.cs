@@ -37,11 +37,9 @@
             this.LinearSearch = new System.Windows.Forms.Button();
             this.TAG = new System.Windows.Forms.Button();
             this.Reset = new System.Windows.Forms.Button();
-            this.InputBox = new System.Windows.Forms.TextBox();
-            this.StatusLable = new System.Windows.Forms.StatusStrip();
+            this.inputBox = new System.Windows.Forms.TextBox();
+            this.statusLable = new System.Windows.Forms.StatusStrip();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -83,6 +81,7 @@
             this.Save.TabIndex = 5;
             this.Save.Text = "Save";
             this.Save.UseVisualStyleBackColor = true;
+            this.Save.Click += new System.EventHandler(this.Save_Click);
             // 
             // Open
             // 
@@ -112,6 +111,7 @@
             this.LinearSearch.TabIndex = 8;
             this.LinearSearch.Text = "Linear Search";
             this.LinearSearch.UseVisualStyleBackColor = true;
+            this.LinearSearch.Click += new System.EventHandler(this.LinearSearch_Click);
             // 
             // TAG
             // 
@@ -121,6 +121,7 @@
             this.TAG.TabIndex = 9;
             this.TAG.Text = "TAG";
             this.TAG.UseVisualStyleBackColor = true;
+            this.TAG.Click += new System.EventHandler(this.TAG_Click);
             // 
             // Reset
             // 
@@ -130,21 +131,22 @@
             this.Reset.TabIndex = 10;
             this.Reset.Text = "Reset";
             this.Reset.UseVisualStyleBackColor = true;
+            this.Reset.Click += new System.EventHandler(this.Reset_Click);
             // 
-            // InputBox
+            // inputBox
             // 
-            this.InputBox.Location = new System.Drawing.Point(243, 56);
-            this.InputBox.Name = "InputBox";
-            this.InputBox.Size = new System.Drawing.Size(143, 20);
-            this.InputBox.TabIndex = 11;
+            this.inputBox.Location = new System.Drawing.Point(243, 56);
+            this.inputBox.Name = "inputBox";
+            this.inputBox.Size = new System.Drawing.Size(143, 20);
+            this.inputBox.TabIndex = 11;
             // 
-            // StatusLable
+            // statusLable
             // 
-            this.StatusLable.Location = new System.Drawing.Point(0, 467);
-            this.StatusLable.Name = "StatusLable";
-            this.StatusLable.Size = new System.Drawing.Size(620, 22);
-            this.StatusLable.TabIndex = 12;
-            this.StatusLable.Text = "statusStrip1";
+            this.statusLable.Location = new System.Drawing.Point(0, 446);
+            this.statusLable.Name = "statusLable";
+            this.statusLable.Size = new System.Drawing.Size(620, 22);
+            this.statusLable.TabIndex = 12;
+            this.statusLable.Text = "statusStrip1";
             // 
             // listBox1
             // 
@@ -153,25 +155,6 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(193, 407);
             this.listBox1.TabIndex = 13;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 445);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 13);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Selected";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(68, 445);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(13, 13);
-            this.label2.TabIndex = 15;
-            this.label2.Text = "?";
             // 
             // label3
             // 
@@ -186,13 +169,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(620, 489);
+            this.ClientSize = new System.Drawing.Size(620, 468);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.StatusLable);
-            this.Controls.Add(this.InputBox);
+            this.Controls.Add(this.statusLable);
+            this.Controls.Add(this.inputBox);
             this.Controls.Add(this.Reset);
             this.Controls.Add(this.TAG);
             this.Controls.Add(this.LinearSearch);
@@ -204,6 +185,7 @@
             this.Controls.Add(this.Enter);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,11 +201,9 @@
         private System.Windows.Forms.Button LinearSearch;
         private System.Windows.Forms.Button TAG;
         private System.Windows.Forms.Button Reset;
-        private System.Windows.Forms.TextBox InputBox;
-        private System.Windows.Forms.StatusStrip StatusLable;
+        private System.Windows.Forms.TextBox inputBox;
+        private System.Windows.Forms.StatusStrip statusLable;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
     }
 }
