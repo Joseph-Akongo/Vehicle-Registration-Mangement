@@ -38,9 +38,9 @@
             this.TAG = new System.Windows.Forms.Button();
             this.Reset = new System.Windows.Forms.Button();
             this.inputBox = new System.Windows.Forms.TextBox();
-            this.statusLable = new System.Windows.Forms.StatusStrip();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.statusLable = new System.Windows.Forms.StatusStrip();
             this.SuspendLayout();
             // 
             // Enter
@@ -140,14 +140,6 @@
             this.inputBox.Size = new System.Drawing.Size(143, 20);
             this.inputBox.TabIndex = 11;
             // 
-            // statusLable
-            // 
-            this.statusLable.Location = new System.Drawing.Point(0, 446);
-            this.statusLable.Name = "statusLable";
-            this.statusLable.Size = new System.Drawing.Size(620, 22);
-            this.statusLable.TabIndex = 12;
-            this.statusLable.Text = "statusStrip1";
-            // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
@@ -155,6 +147,8 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(193, 407);
             this.listBox1.TabIndex = 13;
+            this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
+            this.listBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseDoubleClick);
             // 
             // label3
             // 
@@ -165,14 +159,22 @@
             this.label3.TabIndex = 16;
             this.label3.Text = "Vehicle Plate Details";
             // 
+            // statusLable
+            // 
+            this.statusLable.Location = new System.Drawing.Point(0, 446);
+            this.statusLable.Name = "statusLable";
+            this.statusLable.Size = new System.Drawing.Size(620, 22);
+            this.statusLable.TabIndex = 17;
+            this.statusLable.Text = "statusLable";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(620, 468);
+            this.Controls.Add(this.statusLable);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.statusLable);
             this.Controls.Add(this.inputBox);
             this.Controls.Add(this.Reset);
             this.Controls.Add(this.TAG);
@@ -202,9 +204,9 @@
         private System.Windows.Forms.Button TAG;
         private System.Windows.Forms.Button Reset;
         private System.Windows.Forms.TextBox inputBox;
-        private System.Windows.Forms.StatusStrip statusLable;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.StatusStrip statusLable;
     }
 }
 

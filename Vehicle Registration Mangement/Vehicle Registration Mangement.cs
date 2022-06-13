@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Security;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Vehicle_Registration_Mangement
@@ -22,43 +16,44 @@ namespace Vehicle_Registration_Mangement
             inputBox.MaxLength = 8;
         }
         List<String> myList = new List<String>();
-        List<String> myList2 = new List<String>();  
+        string currentFileName = "";
         private void Open_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog
+            string fileName = "demo_01.txt";
+            OpenFileDialog OpenText = new OpenFileDialog();
+            DialogResult sr = OpenText.ShowDialog();
+            if (sr == DialogResult.OK)
             {
-                InitialDirectory = @"D:\",
-                Title = "Browse Text Files",
-
-                CheckFileExists = true,
-                CheckPathExists = true,
-
-                DefaultExt = "txt",
-                Filter = "txt files (*.txt)|*.txt",
-                FilterIndex = 2,
-                RestoreDirectory = true,
-
-                ReadOnlyChecked = true,
-                ShowReadOnly = true
-            };
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                listBox1.Items.Add(openFileDialog1.FileName);
+                fileName = OpenText.FileName;
             }
-            displayPlate();
+            currentFileName = fileName;
+            try
+            {
+                myList.Clear();
+                using (StreamReader reader = new StreamReader(File.OpenRead(fileName)))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        myList.Add(reader.ReadLine());
+                    }
+                }
+                displayPlate();
+            }
+            catch (IOException)
+            {
+                MessageBox.Show("file not openned");
+            }
         }
 
         private void displayPlate()
         {
             listBox1.Items.Clear();
-            for (int i = 0; i < myList.Count; i++)
+            myList.Sort();
+            foreach (var plate in myList)
             {
-                listBox1.Items.Add(myList);
+                listBox1.Items.Add(plate);
             }
-
         }
-
 
         private void Enter_Click(object sender, EventArgs e)
         {
@@ -73,31 +68,34 @@ namespace Vehicle_Registration_Mangement
 
         private void BinarySearch_Click(object sender, EventArgs e)
         {
+            myList.Sort();
             int index = myList.BinarySearch(inputBox.Text);
             if (index == -1)
             {
-                statusLable.Text = "NOT Found";
+                MessageBox.Show("NOT Found");
             }
             else
             {
-                statusLable.Text = "Found" + index.ToString();
+                MessageBox.Show("Found" + index.ToString());
             }
         }
         private void LinearSearch_Click(object sender, EventArgs e)
         {
+            myList.Sort();
             int idex = myList.IndexOf(inputBox.Text);
-            if(idex == -1)
+            if (idex == -1)
             {
-                statusLable.Text = "NOT Found";
+                MessageBox.Show("NOT Found");
             }
             else
             {
-                statusLable.Text = "Found" + idex.ToString();
+                MessageBox.Show("Found" + idex.ToString());
             }
         }
 
         private void Edit_Click(object sender, EventArgs e)
         {
+            myList.Sort();
             if (listBox1.SelectedIndex > -1)
                 listBox1.Items[listBox1.SelectedIndex] = inputBox.Text;
             else
@@ -105,28 +103,10 @@ namespace Vehicle_Registration_Mangement
             listBox1.Sorted = true;
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBox1.SelectedIndex != -1)
-            {
-                string currentItem = listBox1.SelectedItems.ToString();
-                int itemIndex = listBox1.FindString(currentItem);
-                inputBox.Text = myList[itemIndex].ToString();
-            }
-            else
-            {
-                statusLable.Text = "Select from list";
-            }
-            foreach (string item in myList)
-            {
-                item.Replace("z", "");
-            }
-        }
-      
-
 
         private void Delete_Click(object sender, EventArgs e)
         {
+            myList.Sort();
             if (listBox1.SelectedIndex > -1)
                 listBox1.Items.RemoveAt(listBox1.SelectedIndex);
             else
@@ -145,19 +125,34 @@ namespace Vehicle_Registration_Mangement
 
         private void Save_Click(object sender, EventArgs e)
         {
-            Stream myStream;
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
 
-            saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            saveFileDialog1.FilterIndex = 2;
-            saveFileDialog1.RestoreDirectory = true;
-
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            int num = 0;
+            num = num + 1;
+            string fileName = "demo_0" + num + ".txt";
+            SaveFileDialog SaveText = new SaveFileDialog();
+            DialogResult sr = SaveText.ShowDialog();
+            if (sr == DialogResult.OK)
             {
-                if ((myStream = saveFileDialog1.OpenFile()) != null)
+                fileName = SaveText.FileName;
+            }
+            if (sr == DialogResult.Cancel)
+            {
+                SaveText.FileName = fileName;
+            }
+            // Validate file name and increment
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(fileName, false))
                 {
-                    myStream.Close();
+                    foreach (var plate in myList)
+                    {
+                        writer.WriteLine(plate);
+                    }
                 }
+            }
+            catch (IOException)
+            {
+                MessageBox.Show("File NOT saved");
             }
         }
 
@@ -175,7 +170,23 @@ namespace Vehicle_Registration_Mangement
         {
             string prefix = "z";
             if (listBox1.SelectedIndex > -1)
-                listBox1.Items[listBox1.SelectedIndex] = prefix + listBox1.SelectedItem;           
+                listBox1.Items[listBox1.SelectedIndex] = prefix + listBox1.SelectedItem;
+        }
+
+        private void listBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            listBox1.SetSelected(listBox1.SelectedIndex, true);
+            inputBox.Text = myList.ElementAt(listBox1.SelectedIndex);
+        }
+
+        private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (listBox1.Items.Contains("z"))
+            {
+                int pos = listBox1.Items.IndexOf("z");
+                listBox1.Items.RemoveAt(pos);
+            }
+            displayPlate();
         }
     }
 }
