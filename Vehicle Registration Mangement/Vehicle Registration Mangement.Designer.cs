@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.Enter = new System.Windows.Forms.Button();
             this.Delete = new System.Windows.Forms.Button();
             this.Edit = new System.Windows.Forms.Button();
@@ -41,6 +42,7 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.statusLable = new System.Windows.Forms.StatusStrip();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // Enter
@@ -50,6 +52,7 @@
             this.Enter.Size = new System.Drawing.Size(143, 46);
             this.Enter.TabIndex = 1;
             this.Enter.Text = "Enter";
+            this.toolTip1.SetToolTip(this.Enter, "Add a rego plate to the list.");
             this.Enter.UseVisualStyleBackColor = true;
             this.Enter.Click += new System.EventHandler(this.Enter_Click);
             // 
@@ -60,6 +63,7 @@
             this.Delete.Size = new System.Drawing.Size(143, 46);
             this.Delete.TabIndex = 2;
             this.Delete.Text = "Delete";
+            this.toolTip1.SetToolTip(this.Delete, "Removes plate from list");
             this.Delete.UseVisualStyleBackColor = true;
             this.Delete.Click += new System.EventHandler(this.Delete_Click);
             // 
@@ -70,6 +74,8 @@
             this.Edit.Size = new System.Drawing.Size(143, 46);
             this.Edit.TabIndex = 3;
             this.Edit.Text = "Edit";
+            this.toolTip1.SetToolTip(this.Edit, "Uses binary search to find plate from input box and displays confirmation message" +
+        "");
             this.Edit.UseVisualStyleBackColor = true;
             this.Edit.Click += new System.EventHandler(this.Edit_Click);
             // 
@@ -80,6 +86,7 @@
             this.Save.Size = new System.Drawing.Size(143, 46);
             this.Save.TabIndex = 5;
             this.Save.Text = "Save";
+            this.toolTip1.SetToolTip(this.Save, "Opens file dialog to save to .txt file");
             this.Save.UseVisualStyleBackColor = true;
             this.Save.Click += new System.EventHandler(this.Save_Click);
             // 
@@ -90,6 +97,8 @@
             this.Open.Size = new System.Drawing.Size(143, 46);
             this.Open.TabIndex = 6;
             this.Open.Text = "Open";
+            this.toolTip1.SetToolTip(this.Open, "When the OPEN button is clicked the user can select a .txt that is displayed in t" +
+        "he list.");
             this.Open.UseVisualStyleBackColor = true;
             this.Open.Click += new System.EventHandler(this.Open_Click);
             // 
@@ -100,6 +109,8 @@
             this.BinarySearch.Size = new System.Drawing.Size(143, 46);
             this.BinarySearch.TabIndex = 7;
             this.BinarySearch.Text = "Binary Search";
+            this.toolTip1.SetToolTip(this.BinarySearch, "Uses binary search to find plate from input box and displays confirmation message" +
+        "");
             this.BinarySearch.UseVisualStyleBackColor = true;
             this.BinarySearch.Click += new System.EventHandler(this.BinarySearch_Click);
             // 
@@ -110,6 +121,7 @@
             this.LinearSearch.Size = new System.Drawing.Size(143, 46);
             this.LinearSearch.TabIndex = 8;
             this.LinearSearch.Text = "Linear Search";
+            this.toolTip1.SetToolTip(this.LinearSearch, "Uses linear search to find plate from input box");
             this.LinearSearch.UseVisualStyleBackColor = true;
             this.LinearSearch.Click += new System.EventHandler(this.LinearSearch_Click);
             // 
@@ -120,6 +132,7 @@
             this.TAG.Size = new System.Drawing.Size(143, 46);
             this.TAG.TabIndex = 9;
             this.TAG.Text = "TAG";
+            this.toolTip1.SetToolTip(this.TAG, "Add prefix z to selected item");
             this.TAG.UseVisualStyleBackColor = true;
             this.TAG.Click += new System.EventHandler(this.TAG_Click);
             // 
@@ -130,6 +143,7 @@
             this.Reset.Size = new System.Drawing.Size(143, 46);
             this.Reset.TabIndex = 10;
             this.Reset.Text = "Reset";
+            this.toolTip1.SetToolTip(this.Reset, "Clear all plates from list");
             this.Reset.UseVisualStyleBackColor = true;
             this.Reset.Click += new System.EventHandler(this.Reset_Click);
             // 
@@ -139,6 +153,7 @@
             this.inputBox.Name = "inputBox";
             this.inputBox.Size = new System.Drawing.Size(143, 20);
             this.inputBox.TabIndex = 11;
+            this.toolTip1.SetToolTip(this.inputBox, "User input");
             // 
             // listBox1
             // 
@@ -147,6 +162,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(193, 407);
             this.listBox1.TabIndex = 13;
+            this.toolTip1.SetToolTip(this.listBox1, "Displays plates and all plates are sorted");
             this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
             this.listBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseDoubleClick);
             // 
@@ -187,6 +203,8 @@
             this.Controls.Add(this.Enter);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.toolTip1.SetToolTip(this, "Displays plates and all plates are sorted");
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -207,6 +225,7 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.StatusStrip statusLable;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 
